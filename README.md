@@ -1,2 +1,2 @@
 # autotabular
-Automated Machine Learning and Deep Learning in tabular domain.
+Automated Machine Learning Framework in tabular domain.
