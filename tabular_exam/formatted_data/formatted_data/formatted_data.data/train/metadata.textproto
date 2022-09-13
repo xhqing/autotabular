@@ -1,0 +1,16 @@
+is_sequence: false
+sample_count: 28831
+sequence_size: 1
+output_dim: 2
+matrix_spec {
+  col_count: 20
+  row_count: 1
+  num_channels: 1
+  is_sequence_col: false
+  is_sequence_row: false
+  has_locality_col: true
+  has_locality_row: true
+  format: DENSE
+}
+
+
