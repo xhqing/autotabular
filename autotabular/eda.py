@@ -7,7 +7,7 @@ class AutoEDA(object):
         return eda_info
 
     def recognize_col2type(self, df):
-        m, n = df.shape
+        n = df.shape[1]
         cat_cols = []
         num_cols = []
         if n > 1000:

@@ -137,25 +137,22 @@ def auto_train(train_set: pd.DataFrame, test_set: pd.DataFrame, label_name: str,
             raise LabelError(f"""\033[01;31;01m`label_nunique` should be at least 2, but label have only {label_nunique} kind of value!\033[01;31;01m""")
         if label_nunique != test_set[label_name].nunique():
             raise LabelError(f"""\033[01;31;01mtrain_set label nunique not the same as test_set label nunique!\033[01;31;01m""")
+        is_multi_label = False if label_nunique == 2 else True
     
-        model = TabularModel(max_epoch=max_epoch)
-        start_time = int(time.time())
-        trainset = deepcopy(train_set)
-        x_test = deepcopy(test_set.drop(label_name, axis=1))
-        for i in range(max_epoch):
-            remaining_time_budget = start_time + time_budget - int(time.time())
-            # import pdb
-            # pdb.set_trace()
-            model.fit(trainset=trainset, label_name=label_name, remaining_time_budget=remaining_time_budget)
-            remaining_time_budget = start_time + time_budget - int(time.time())
-            y_pred = model.predict(x_test=x_test, remaining_time_budget=remaining_time_budget)
+    model = TabularModel(max_epoch=max_epoch, task=task, is_multi_label=is_multi_label)
+    start_time = int(time.time())
+    trainset = deepcopy(train_set)
+    x_test = deepcopy(test_set.drop(label_name, axis=1))
+    for i in range(max_epoch):
+        remaining_time_budget = start_time + time_budget - int(time.time())
+        model.fit(trainset=trainset, label_name=label_name, remaining_time_budget=remaining_time_budget)
+        remaining_time_budget = start_time + time_budget - int(time.time())
+        y_pred = model.predict(x_test=x_test, remaining_time_budget=remaining_time_budget)
 
-            ohe_y_test = OneHotEncoder(categories='auto').fit_transform([[ele] for ele in test_set[label_name]]).toarray()
-            nauc_score = nauc(y_test=ohe_y_test, prediction=y_pred)
-            acc_score = acc(y_test=ohe_y_test, prediction=y_pred)
-            print("Epoch={}, evaluation: nauc_score={}, acc_score={}".format(i, nauc_score, acc_score))
-
-            if i == 0: break
+        ohe_y_test = OneHotEncoder(categories='auto').fit_transform([[ele] for ele in test_set[label_name]]).toarray()
+        nauc_score = nauc(y_test=ohe_y_test, prediction=y_pred)
+        acc_score = acc(y_test=ohe_y_test, prediction=y_pred)
+        print("Epoch={}, evaluation: nauc_score={}, acc_score={}".format(i, nauc_score, acc_score))
 
 
 
