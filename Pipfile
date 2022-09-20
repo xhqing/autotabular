@@ -13,6 +13,7 @@ sklearn = "*"
 pandas = "*"
 lightgbm = "*"
 psutil = "*"
+librosa = "*"
 
 [dev-packages]
 

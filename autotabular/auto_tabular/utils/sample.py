@@ -17,7 +17,7 @@ class AutoSample:
         class_idx = {}
         idx = np.arange(self.sample_num)
         for i in range(self.class_num):
-            idx_list = idx[self.y_onehot[:,i] == 1]
+            idx_list = idx[self.y_onehot == i]
             class_idx[i] = list(idx_list)
         return class_idx
 

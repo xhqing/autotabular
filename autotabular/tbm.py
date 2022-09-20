@@ -3,6 +3,7 @@ from autotabular.eda import AutoEDA
 from copy import deepcopy
 import pandas as pd
 from autotabular.data_space import TabularDataSpace
+from autotabular.model_space import TabularModelSpace
 
 class TabularModel:
     """TabularModel class"""
@@ -65,6 +66,8 @@ class TabularModel:
                 eda_info['is_multi_label'] = self.is_multi_label
 
                 self.data_space = TabularDataSpace(eda_info, main_df, self.Y_train, self.lgb_info)
+                import pdb
+                pdb.set_trace()
                 self.model_space = TabularModelSpace(self.metadata_info, eda_info)
                 self.explore = Explore(self.metadata_info, eda_info, self.model_space, self.data_space)
 

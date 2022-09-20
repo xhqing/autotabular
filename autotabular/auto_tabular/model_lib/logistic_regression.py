@@ -1,5 +1,5 @@
 import numpy as np
-from sklearn.linear_model import logistic
+from sklearn.linear_model import _logistic
 from sklearn.metrics import roc_auc_score
 
 from ..CONSTANT import *
@@ -22,7 +22,7 @@ class LogisticRegression(MetaModel):
         self.all_data_round = 1
 
     def init_model(self, class_num):
-        self._model = logistic.LogisticRegression(C=1.0, max_iter=200, solver='liblinear', multi_class='auto')
+        self._model = _logistic.LogisticRegression(C=1.0, max_iter=200, solver='liblinear', multi_class='auto')
         self.is_init = True
 
     def epoch_train(self, dataloader, run_num):
