@@ -1,10 +1,14 @@
 import sys
-print(sys.executable)
+print("pythonPath: ", sys.executable)
 
 from sklearn.preprocessing import LabelEncoder
 import pandas as pd
 import autotabular as at
 from sklearn.model_selection import train_test_split
+
+import pdb
+pdb.set_trace()
+print("========================")
 
 df = pd.read_csv("dataset/bank-additional-full.csv", sep=";")
 
