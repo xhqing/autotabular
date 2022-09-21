@@ -30,7 +30,7 @@ def get_logger(verbosity_level, use_error_log=False, log_path=None):
     logger.setLevel(logging_level)
 
     if log_path is None:
-        log_dir = os.path.join("..", "log")
+        log_dir = os.path.join(".", "log")
         if not os.path.exists(log_dir):
             os.makedirs(log_dir)
         log_path = os.path.join(log_dir, "log.txt")

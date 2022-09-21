@@ -7,7 +7,7 @@ import numpy as np
 from sklearn.model_selection import StratifiedShuffleSplit
 from collections import defaultdict
 
-from autogbm.utils.log_utils import log, timeit
+from autotabular.utils.log_utils import log, timeit
 from ...auto_tabular.utils.data_utils import ohe2cat
 from .meta_model import MetaModel
 
